@@ -1,0 +1,5 @@
+SELECT emp_no, first_name, last_name, hire_date FROM employees WHERE hire_date > '1999-12-31' ORDER BY emp_no INTO OUTFILE '/var/lib/mysql-files/new_hires.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+CREATE VIEW high_salaries AS SELECT salary FROM salaries WHERE salary > 120000 ORDER BY salary INTO OUTFILE '/var/lib/mysql-files/high_salaries.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+CREATE VIEW temp_salaries AS SELECT employees.emp_no, employees.first_name, employees.last_name, salaries.salary FROM employees, salaries WHERE employees.emp_no=salaries.emp_no;
+CREATE VIEW high_salary_names AS SELECT DISTINCT first_name, last_name FROM temp_salaries WHERE salary > 120000 ORDER BY last_name;
+SELECT * FROM high_salary_names INTO OUTFILE '/var/lib/mysql-files/high_salary_names.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';

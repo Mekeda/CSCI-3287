@@ -1,0 +1,4 @@
+CREATE VIEW empkeys AS SELECT DISTINCT emp_no, dept_no FROM base ORDER BY emp_no INTO OUTFILE '/var/lib/mysql-files/empkeys.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+CREATE VIEW dept_name AS SELECT DISTINCT dept_no, dept_name FROM base ORDER BY dept_no INTO OUTFILE '/var/lib/mysql-files/dept_name.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+CREATE VIEW dept_mgr_dates AS SELECT DISTINCT dept_name, dept_mgr_from_date, dept_mgr_to_date FROM base ORDER BY dept_name INTO OUTFILE '/var/lib/mysql-files/dept_mgr_dates.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+CREATE VIEW emp_titles AS SELECT DISTINCT emp_no, title, title_from_date, title_to_date FROM base ORDER BY emp_no INTO OUTFILE '/var/lib/mysql-files/emp_titles.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';

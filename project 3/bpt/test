@@ -1,0 +1,29 @@
+diff --git a/bpt.c b/bpt.c
+index 9449525..0796424 100644
+--- a/bpt.c
++++ b/bpt.c
+@@ -668,7 +668,7 @@ node * insert_into_leaf( node * leaf, int key, record * pointer ) {
+ 	int i, insertion_point;
+ 
+ 	insertion_point = 0;
+-	while (insertion_point < leaf->num_keys && leaf->keys[insertion_point] < key)
++	while (insertion_point < leaf->num_keys && leaf->keys[insertion_point] > key)
+ 		insertion_point++;
+ 
+ 	for (i = leaf->num_keys; i > insertion_point; i--) {
+@@ -709,7 +709,7 @@ node * insert_into_leaf_after_splitting(node * root, node * leaf, int key, recor
+ 	}
+ 
+ 	insertion_index = 0;
+-	while (insertion_index < order - 1 && leaf->keys[insertion_index] < key)
++	while (insertion_index < order - 1 && leaf->keys[insertion_index] > key)
+ 		insertion_index++;
+ 
+ 	for (i = 0, j = 0; i < leaf->num_keys; i++, j++) {
+@@ -1468,4 +1468,4 @@ int main( int argc, char ** argv ) {
+ 	printf("\n");
+ 
+ 	return EXIT_SUCCESS;
+-}
+\ No newline at end of file
++}
